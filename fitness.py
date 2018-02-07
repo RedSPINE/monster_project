@@ -317,11 +317,19 @@ def average_number_of_components(population):
 	sum_components /= len(population)
 	return sum_components
 
+def population_stats(population, generation_number):
+	pop_starts_format = "Generation n°{0} [{4}]: {1} | Nbr pieces : {2} | Best fitness : {3}"
+	return pop_starts_format.format(
+		generation_number,
+		average_fitness(population),
+		average_number_of_components(population),
+		fitness(best_clock(population)),
+		len(population)
+	)
+
 def natural_selection(population):
-	i=0
-	while(i<NUMBER_GENERATIONS-1):
-		i+=1
-		print("Generation n°", i+1, ":", average_fitness(population), "Nbr pieces : ", average_number_of_components(population), " Best Fitness : ", fitness(best_clock(population)))
+	for i in range(NUMBER_GENERATIONS):
+		print(population_stats(population, i+1))
 		evolve(population)
 
 

@@ -342,30 +342,30 @@ def display_clock(clock):
 	for i in range(0,len(connection_list)):
 		print (connection_list[i][0].__class__.__name__,connection_list[i][1].__class__.__name__,connection_list[i][2])
 
-"""
-	Test
-"""
+if __name__ == '__main__':
+	"""
+		Test
+	"""
+	print(" ------------------------------------------------------- ")
+	input_database()
+	population = gen.generate(100,3,100)
+	natural_selection(population)
 
-print(" ------------------------------------------------------- ")
-input_database()
-population = gen.generate(100,3,100)
-natural_selection(population)
-
-best = best_clock(population)
-print("Best fitness : ", fitness(best))
-for piece in gen.classes :
-	counter = 0
-	for part in best[1:]:
-		if isinstance(part, piece):
-			counter+=1
-	print("Number of ", piece, " : ", counter)
-print("------ connections ------")
-print(gen.list_connections(best))
+	best = best_clock(population)
+	print("Best fitness : ", fitness(best))
+	for piece in gen.classes :
+		counter = 0
+		for part in best[1:]:
+			if isinstance(part, piece):
+				counter+=1
+		print("Number of ", piece, " : ", counter)
+	print("------ connections ------")
+	print(gen.list_connections(best))
 
 
-''' for i in range(len(valid_connections)) :
-	print(i, " : ", valid_connections[i].name, " -> ", valid_connections[i].point)
-print( "   ",1 - abs((abs(1./60) - VITESSE_SECONDHAND) / VITESSE_SECONDHAND))
-print( "   ",1 - abs((abs(1/.60) - VITESSE_MINUTEHAND) / VITESSE_MINUTEHAND))
-print( "   ",1 - abs((abs(1./60) - VITESSE_HOURHAND) / VITESSE_HOURHAND))
- '''
+	''' for i in range(len(valid_connections)) :
+		print(i, " : ", valid_connections[i].name, " -> ", valid_connections[i].point)
+	print( "   ",1 - abs((abs(1./60) - VITESSE_SECONDHAND) / VITESSE_SECONDHAND))
+	print( "   ",1 - abs((abs(1/.60) - VITESSE_MINUTEHAND) / VITESSE_MINUTEHAND))
+	print( "   ",1 - abs((abs(1./60) - VITESSE_HOURHAND) / VITESSE_HOURHAND))
+	 '''

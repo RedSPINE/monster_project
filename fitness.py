@@ -126,29 +126,25 @@ def find_chains(connection_list):
 
 
 def gears_XY_connection(obj1,obj2):
-	""" 
-	2 gears connected by teeths,if gear1 spins will train gear 2 to spin
-	"""
-	if (obj1.y_position == obj2.y_position) and (obj2.x_position == obj1.x_position) and distance_between_objs(obj1, obj2) < PIN_DISTANCE and (obj1.is_rotate() or obj2.is_rotate()):
+	"""	2 gears connected by teeths,if gear1 spins will train gear 2 to spin """
+	if obj1.y_position == obj2.y_position and \
+		obj2.x_position == obj1.x_position and \
+		distance_between_objs(obj1, obj2) < PIN_DISTANCE and \
+		obj1.is_rotate() or obj2.is_rotate():
 		obj2.rotates = True
 		obj2.speed = gear1.speed * gear1.nb_teeth / gear2.nb_teeth
 
 
 def objects_Z_connection(obj1,obj2):
-	"""
-	If 2 objects in the same axe, obj1 will train vitesse to obj2
-	"""
-	if obj1.z_position == obj2.z_position :
-		if obj1.is_rotate():
-			obj2.rotates = True
-			obj2.speed = obj1.speed
+	""" If 2 objects in the same axe, obj1 will train vitesse to obj2 """
+	if obj1.z_position == obj2.z_position and obj1.is_rotate():
+		obj2.rotates = True
+		obj2.speed = obj1.speed
 
 
 def is_rotate(obj):
-	if obj.speed != 0:
-		return True
-	return False
-
+	""" Return True if the object is in rotation """
+	return obj.speed != 0
 
 def initial_clock_run(clock):
 	# INPUT : LIST OF OBJECTS OF A CLOCK
@@ -183,7 +179,7 @@ def fitness(clock):
 	score = 0
 
 	# Each component reduces the fitness score
-	score = score - (COMPONENT_COST * (len(clock) - 1)) 
+	score = score - (COMPONENT_COST * (len(clock) - 1))
 
 	# For each unique piece, give point only if it has one occurence in the watch
 	for name in wanted_pieces:

@@ -16,7 +16,7 @@ import random as rnd
 import math as m
 
 
-CHANCE_TO_MUTATE = 1/50
+CHANCE_TO_MUTATE = 1/25
 # Gears module
 GEARS_MODULE = 0.1
 # Possible positions /!\ We're working with natural integers only bits : 11 - 11 - 4

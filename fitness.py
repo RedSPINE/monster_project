@@ -346,21 +346,23 @@ def display_clock(clock):
 	Test
 """
 
-print(" ------------------------------------------------------- ")
-input_database()
-population = gen.generate(100,3,100)
-natural_selection(population)
-
-best = best_clock(population)
-print("Best fitness : ", fitness(best))
-for piece in gen.classes :
-	counter = 0
-	for part in best[1:]:
-		if isinstance(part, piece):
-			counter+=1
-	print("Number of ", piece, " : ", counter)
-print("------ connections ------")
-print(gen.list_connections(best))
+try: 
+	input_database()
+	population = gen.generate(100,3,100)
+	natural_selection(population)
+except KeyboardInterrupt:
+    pass
+finally:
+	best = best_clock(population)
+	print("Best fitness : ", fitness(best))
+	for piece in gen.classes :
+		counter = 0
+		for part in best[1:]:
+			if isinstance(part, piece):
+				counter+=1
+		print("Number of ", piece, " : ", counter)
+	print("------ connections ------")
+	print(gen.list_connections(best))
 
 
 ''' for i in range(len(valid_connections)) :
